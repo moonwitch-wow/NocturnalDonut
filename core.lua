@@ -9,17 +9,8 @@ local eventHandler = CreateFrame("frame")
 ------------------------------------------------------------------------
 local font = STANDARD_TEXT_FONT
 local fontSize = 12
-
-local backdrop = {
-  bgFile = "Interface\Buttons\WHITE8x8",
-  edgeFile = "Interface\Buttons\WHITE8x8",
-  tiled = false,
-  edgeSize = 1,
-  insets = { left = -1, right = -1, top = -1, bottom = -1}
-}
-local backdropColor = { .1,.1,.1,1 }
-local borderColor = { .6,.6,.6,1 }
-local buttonSize = 36
+local buttonSize = 34
+local horizontal_spacing = -10
 
 ------------------------------------------------------------------------
 -- Functions
