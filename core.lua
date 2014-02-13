@@ -20,7 +20,7 @@ hooksecurefunc("BuffFrame_OnLoad", function()
   BUFF_FLASH_TIME_ON = 0.8
   BUFF_FLASH_TIME_OFF = 0.8
   BUFF_MIN_ALPHA = 0.70
-  BUFFS_PER_ROW = 12;
+  BUFFS_PER_ROW = 12
   DAY_ONELETTER_ABBR = "%dd"
   HOUR_ONELETTER_ABBR = "%dh"
   MINUTE_ONELETTER_ABBR = "%dm"
@@ -61,8 +61,6 @@ end
 -- Skinning Functions
 ------------------------------------------------------------------------
 local skinner = function( name, id )
-  if not name then return end -- if it"s not a buff or debuff fuck it
-
   local base = _G[("%s%d"):format(name, id)]
   local icon = _G[("%s%dIcon"):format(name, id)]
   local duration = _G[("%s%dDuration"):format(name, id)]
