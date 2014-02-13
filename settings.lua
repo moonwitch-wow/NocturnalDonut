@@ -12,16 +12,6 @@ local Panel = CreateFrame('Frame', nil, InterfaceOptionsFramePanelContainer)
 Panel.name = addonName
 Panel:Hide()
 
-------------------------------------------------------------------------
--- Child Frame
-------------------------------------------------------------------------
-Panel.childpanel = CreateFrame( "Frame", nil, Panel)
-Panel.childpanel.name = ChildPanelName
-Panel.childpanel:Hide()
-
--- Specify childness of this panel
-Panel.childpanel.parent = Panel.name
-
 -----------------------------
 -- Populating the panel itself (main panel)
 Panel:SetScript('OnShow', function(self)
@@ -42,14 +32,3 @@ end)
 -----------------------------
 -- Add the panel to the Interface Options
 InterfaceOptions_AddCategory(Panel)
-
------------------------------
--- Add the child to the Interface Options
-InterfaceOptions_AddCategory(Panel.childpanel)
-
------------------------------
--- Adding a SlashCommand to open the correct Panel
-SLASH_NDONUT1 = '/Ndonut'
-SlashCmdList[NDONUT] = function()
-   InterfaceOptionsFrame_OpenToCategory(addonName)
-end
