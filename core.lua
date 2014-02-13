@@ -72,12 +72,16 @@ local skinner = function( name, id )
     -- set size
     base:SetSize(buttonSize, buttonSize)
 
-    count:SetFont(font, fontSize, "THINOUTLINE")
+    count:SetFont(font, fontSize+3)
+    count:SetShadowColor(0, 0, 0, .9)
+    count:SetShadowOffset(1, -1)
     count:ClearAllPoints()
     count:SetPoint("TOPRIGHT", base)
     count:SetDrawLayer"OVERLAY"
 
-    duration:SetFont(font, fontSize, "THINOUTLINE")
+    duration:SetFont(font, fontSize)
+    duration:SetShadowColor(0, 0, 0, .9)
+    duration:SetShadowOffset(1, -1)
     duration:ClearAllPoints()
     duration:SetPoint("TOP", base, "BOTTOM", 0, -1)
     duration:SetDrawLayer"OVERLAY"
