@@ -83,43 +83,44 @@ local skinner = function( name, id )
     duration:SetShadowColor(0, 0, 0, .9)
     duration:SetShadowOffset(1, -1)
     duration:ClearAllPoints()
-    duration:SetPoint("TOP", base, "BOTTOM", 0, -1)
+    duration:SetPoint("TOP", base, "BOTTOM", 0, 4)
     duration:SetDrawLayer"OVERLAY"
-
 
     icon:SetTexCoord(0.1,0.9,0.1,0.9)
     icon:SetDrawLayer("BACKGROUND")
 
     --border
     if (border) then
-      border:SetDrawLayer'BORDER'
+      border:SetDrawLayer"BORDER"
       border:SetParent(base)
-      border:SetTexture('Interface\\AddOns\\NocturnalDonut\\media\\gloss')
-      border:SetPoint('TOPRIGHT', base, 2, 2)
-      border:SetPoint('BOTTOMLEFT', base, -2, -2)
+      border:SetTexture("Interface\\AddOns\\NocturnalDonut\\media\\gloss")
+      border:SetPoint("TOPRIGHT", base, 2, 2)
+      border:SetPoint("BOTTOMLEFT", base, -2, -2)
       border:SetTexCoord(0, 1, 0, 1)
     end
 
     if (base and not skin and not border) then
-      local overlay = CreateFrame("Frame", base:GetName().."Skin", button)
+      local overlay = CreateFrame("Frame", base:GetName().."Skin")
       overlay:SetAllPoints(base)
       overlay:SetParent(base)
 
       local texture = overlay:CreateTexture(nil, "BORDER")
       texture:SetParent(base)
-      texture:SetTexture("Interface\\AddOns\\NocturnalDonut\\media\\gloss_grey")
+      texture:SetTexture("Interface\\AddOns\\NocturnalDonut\\media\\gloss")
       texture:SetPoint("TOPRIGHT", overlay, 2, 2)
       texture:SetPoint("BOTTOMLEFT", overlay, -2, -2)
-      texture:SetVertexColor(0.3, 0.3, 0.3)
+      texture:SetVertexColor(0.4, 0.4, 0.4)
     end
   return true
+  end
 end
 
 --update debuff anchors
 local function updateDebuffs()
-  DEBUFF_ACTUAL_DISPLAY = 0;
+  BUFF_HORIZ_SPACING = horizontal_spacing
+  DEBUFF_ACTUAL_DISPLAY = 0
   for i=1, DEBUFF_MAX_DISPLAY do
-    if ( updateIcon("DebuffButton", i) ) then
+    if ( skinner("DebuffButton", i) ) then
       DEBUFF_ACTUAL_DISPLAY = DEBUFF_ACTUAL_DISPLAY + 1;
     end
   end
@@ -127,7 +128,8 @@ end
 
 --update buff anchors
 local function updateAllBuffs()
-  BUFF_ACTUAL_DISPLAY = 0;
+  BUFF_HORIZ_SPACING = horizontal_spacing
+  BUFF_ACTUAL_DISPLAY = 0
   for i=1, BUFF_MAX_DISPLAY do
     if ( skinner("BuffButton", i) ) then
       BUFF_ACTUAL_DISPLAY = BUFF_ACTUAL_DISPLAY + 1;
@@ -141,26 +143,12 @@ end
 hooksecurefunc("BuffFrame_UpdateAllBuffAnchors", updateAllBuffs)
 hooksecurefunc("DebuffButton_UpdateAnchors", updateDebuffs)
 -- temp enchants are wonky
-local r, g, b = 136/255, 57/255, 184/255
+local r, g, b = .7 , .6 , 1
 for i = 1, 3 do
   skinner("TempEnchant", i)
 
   local fn = _G["TempEnchant" .. i .. "Border"]
-  --fn:SetTexture(1, 1, 1)
   fn:SetTexture("Interface\\AddOns\\NocturnalDonut\\media\\gloss")
   fn:SetVertexColor(r, g, b)
-  --fn:SetBlendMode"MOD" -- so the icon is visible
   _G["TempEnchant" .. i .. "Duration"]:SetDrawLayer"OVERLAY"
 end
-
-------------------------------------------------------------------------
--- Registering Events
-------------------------------------------------------------------------
-eventHandler:RegisterEvent( "PLAYER_ENTERING_WORLD" )
-eventHandler:RegisterEvent( "PET_BATTLE_OPENING_START" )
-eventHandler:RegisterEvent( "PET_BATTLE_CLOSE" )
-eventHandler:RegisterUnitEvent( "UNIT_ENTERED_VEHICLE", "player" )
-eventHandler:RegisterUnitEvent( "UNIT_EXITED_VEHICLE", "player" )
-eventHandler:RegisterEvent("GROUP_ROSTER_UPDATE")
-eventHandler:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
-eventHandler:RegisterUnitEvent( "UNIT_AURA", "player", "vehicle" )
