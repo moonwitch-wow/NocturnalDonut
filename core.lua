@@ -94,9 +94,9 @@ local skinner = function( name, id )
     if (border) then
       border:SetDrawLayer"BORDER"
       border:SetParent(base)
-      border:SetTexture("Interface\\AddOns\\NocturnalDonut\\media\\gloss")
-      border:SetPoint("TOPRIGHT", base, 2, 2)
-      border:SetPoint("BOTTOMLEFT", base, -2, -2)
+      border:SetTexture("Interface\\AddOns\\NocturnalDonut\\media\\gloss_grey")
+      border:SetPoint("TOPRIGHT", base, 3, 3)
+      border:SetPoint("BOTTOMLEFT", base, -3, -3)
       border:SetTexCoord(0, 1, 0, 1)
     end
 
@@ -149,7 +149,13 @@ for i = 1, 3 do
   skinner("TempEnchant", i)
 
   local fn = _G["TempEnchant" .. i .. "Border"]
-  fn:SetTexture("Interface\\AddOns\\NocturnalDonut\\media\\gloss")
+  fn:SetTexture("Interface\\AddOns\\NocturnalDonut\\media\\gloss_grey")
   fn:SetVertexColor(r, g, b)
   _G["TempEnchant" .. i .. "Duration"]:SetDrawLayer"OVERLAY"
 end
+
+eventHandler:RegisterEvent("PLAYER_ENTERING_WORLD")
+eventHandler:SetScript("OnEvent", function()
+  updateAllBuffs()
+  updateDebuffs()
+end)
