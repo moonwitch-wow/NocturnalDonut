@@ -108,8 +108,8 @@ local skinner = function( name, id )
       local texture = overlay:CreateTexture(nil, "BORDER")
       texture:SetParent(base)
       texture:SetTexture("Interface\\AddOns\\NocturnalDonut\\media\\gloss")
-      texture:SetPoint("TOPRIGHT", overlay, 2, 2)
-      texture:SetPoint("BOTTOMLEFT", overlay, -2, -2)
+      texture:SetPoint("TOPRIGHT", overlay, 3, 3)
+      texture:SetPoint("BOTTOMLEFT", overlay, -3, -3)
       texture:SetVertexColor(0.4, 0.4, 0.4)
     end
   return true
