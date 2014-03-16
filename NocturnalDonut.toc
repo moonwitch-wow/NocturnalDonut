@@ -3,7 +3,7 @@
 ## Title: Nocturnal Donut
 ## Notes: Sexy dry buff addon
 ## Author: Kelly Crabbé AKA MoonWitch
-## Version: 0.1a
+## Version: r1
 ## X-Website: https://github.com/moonwitch/NocturnalDonut
 ## X-Email: kelly.crabbe@gmail.com
 
