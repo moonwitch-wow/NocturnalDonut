@@ -9,7 +9,8 @@ local eventHandler = CreateFrame("frame")
 ------------------------------------------------------------------------
 local font = STANDARD_TEXT_FONT
 local fontSize = 12
-local buttonSize = 34
+local fontFlag = 'OUTLINE'
+local buttonSize = 32
 local horizontal_spacing = -10
 
 ------------------------------------------------------------------------
@@ -72,14 +73,14 @@ local skinner = function( name, id )
     -- set size
     base:SetSize(buttonSize, buttonSize)
 
-    count:SetFont(font, fontSize+3)
+    count:SetFont(font, fontSize+3, fontFlag)
     count:SetShadowColor(0, 0, 0, .9)
     count:SetShadowOffset(1, -1)
     count:ClearAllPoints()
     count:SetPoint("TOPRIGHT", base)
     count:SetDrawLayer"OVERLAY"
 
-    duration:SetFont(font, fontSize)
+    duration:SetFont(font, fontSize, fontFlag)
     duration:SetShadowColor(0, 0, 0, .9)
     duration:SetShadowOffset(1, -1)
     duration:ClearAllPoints()
